@@ -6,11 +6,11 @@ import java.awt.*;
 import java.awt.geom.RoundRectangle2D;
 
 public class RoundedPopopMenu extends JPopupMenu{
-	private int cornerRadius = 11;
+	private int cornerRadius = 20;
 
     public RoundedPopopMenu() {
         super();
-        setOpaque(true);
+        setOpaque(false);
     }
 
     @Override

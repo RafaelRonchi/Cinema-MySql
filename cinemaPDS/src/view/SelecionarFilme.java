@@ -75,6 +75,8 @@ public class SelecionarFilme extends JFrame {
 		});
 		contentPane.setLayout(new MigLayout("", "[36.00,grow][200.00px,grow][36.00px][36.00px][252.00px,grow][36.00px][36.00][252px,grow][36.00,grow]", "[27.00,grow][][54.00px][36.00][337.00px,grow][][49.00,grow]"));
 		
+		
+		
 		JButton btnNewButton = new JButton("Voltar");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -223,5 +225,7 @@ public class SelecionarFilme extends JFrame {
 		lblNewLabel.setFont(new Font("Yu Gothic UI Light", Font.BOLD, 46));
 		lblNewLabel.setForeground(Color.WHITE);
 		contentPane.add(lblNewLabel, "cell 2 0 5 3,alignx center,aligny center");
+		
+		
 	}
 }
