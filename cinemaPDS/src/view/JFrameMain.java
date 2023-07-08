@@ -1,6 +1,7 @@
 package view;
 
 import java.awt.EventQueue;
+import main.Main;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -178,6 +179,8 @@ public class JFrameMain extends JFrame {
 								Funcionario nFuncionario = new Funcionario(cpf1, user);
 
 								if(funcionarioDAO.verificarLogin(nFuncionario)) {
+									
+									Main.setFuncionarioLogado(nFuncionario);
 									SelecionarFilme sf = new SelecionarFilme();
 									dispose(); // fecha tela atual
 									sf.setVisible(true);

@@ -10,6 +10,7 @@ import javax.swing.JPanel;
 import javax.swing.border.Border;
 import javax.swing.border.EmptyBorder;
 
+import main.Main;
 import modelo.RoundedPopopMenu;
 
 import java.awt.SystemColor;
@@ -103,10 +104,23 @@ public class SelecionarFilme extends JFrame {
 			// Criação do JPopupMenu
 			JPopupMenu popupMenu = new RoundedPopopMenu();
 	
-			// Obtém os dados do usuário (substitua os valores abaixo pelos dados reais)
-			String nomeUsuario = "John Doe";
-			String cpfUsuario = "123.456.789-00";
-			double valorVendas = 1500.00;
+			// Obtém os dados do usuário (substitua os valores abaixo pelos dados reais
+			String nomeUsuario = Main.getFuncionarioLogado().getNome();
+			
+			// CPF mascara
+			StringBuilder cpfFormatado = new StringBuilder();
+			String numeros = String.valueOf(Main.getFuncionarioLogado().getCpf());
+			cpfFormatado.append(numeros.substring(0, 3));
+			cpfFormatado.append(".");
+			cpfFormatado.append(numeros.substring(3, 6));
+			cpfFormatado.append(".");
+			cpfFormatado.append(numeros.substring(6, 9));
+			cpfFormatado.append("-");
+			cpfFormatado.append(numeros.substring(9, 11));
+
+			cpfFormatado.toString();
+			String cpfUsuario = String.valueOf(cpfFormatado);
+			double valorVendas = Main.getFuncionarioLogado().getVendasDouble();
 	
 			// Criação dos JLabels para exibir as informações
 			JLabel labelNome = new JLabel("Nome: " + nomeUsuario);
@@ -121,7 +135,7 @@ public class SelecionarFilme extends JFrame {
 			Color roxo = new Color(128, 0, 128); // R:128, G:0, B:128
 			Color azul = new Color(0, 0, 255); // R:0, G:0, B:255
 	
-			Border roundedBorder = BorderFactory.createLineBorder(Color.WHITE, 1, true);
+			
 			
 			
 			// Define o espaçamento interno (padding) desejado
@@ -140,9 +154,6 @@ public class SelecionarFilme extends JFrame {
 			labelNome.setForeground(roxo);
 			labelCPF.setForeground(azul);
 			labelVendas.setForeground(verde);
-			labelNome.setBorder(roundedBorder);
-			labelCPF.setBorder(roundedBorder);
-			labelVendas.setBorder(roundedBorder);
 			labelNome.setPreferredSize(new Dimension(300, 100));
 			labelCPF.setPreferredSize(new Dimension(300, 100));
 			labelVendas.setPreferredSize(new Dimension(300, 100));

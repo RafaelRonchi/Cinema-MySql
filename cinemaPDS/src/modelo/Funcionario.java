@@ -5,10 +5,12 @@ import java.time.LocalDate;
 public class Funcionario {
 	private Long Cpf;
 	private String Nome;
+	private Double vendasDouble;
 	
 	public Funcionario(long cpf, String nome) {
 		Cpf = cpf;
 		Nome = nome;
+		vendasDouble = 0.00;
 	}
 	public Funcionario() {
 		
@@ -28,6 +30,12 @@ public class Funcionario {
 
 	public void setNome(String nome) {
 		Nome = nome;
+	}
+	public Double getVendasDouble() {
+		return vendasDouble;
+	}
+	public void setVendasDouble(Double vendasDouble) {
+		this.vendasDouble = vendasDouble;
 	}
 	
 }
