@@ -10,6 +10,7 @@ import com.mysql.cj.xdevapi.PreparableStatement;
 
 import Interfaces.IFuncionario;
 import conexao.ConexaoMySql;
+import main.Main;
 import modelo.Funcionario;
 
 public class FuncionarioDAO implements IFuncionario{
@@ -106,21 +107,30 @@ public class FuncionarioDAO implements IFuncionario{
 	
 	@Override
 	public boolean verificarLogin(Funcionario funcionario) {
-	    String selectSQL = "SELECT cpf_funcionario, nome_funcionario FROM FUNCIONARIO WHERE cpf_funcionario = ? AND nome_funcionario = ?";
+	    String selectSQL = "SELECT * FROM FUNCIONARIO WHERE cpf_funcionario = ? ";
 	    PreparedStatement ps = null;
 	    ResultSet rs = null;
 
 	    try {
 	        ps = conexao.prepareStatement(selectSQL);
 	        ps.setLong(1, funcionario.getCpf());
-	        ps.setString(2, funcionario.getNome());
 	        rs = ps.executeQuery();
 
-	        return rs.next(); // Retorna true se houver um resultado na consulta, indicando um login válido
+	        if (rs.next()) {
+	            // Cria um novo objeto Funcionario com os dados do resultado da consulta
+	            Funcionario funcionarioEncontrado = new Funcionario();
+	            funcionarioEncontrado.setCpf(rs.getLong("cpf_funcionario"));
+	            funcionarioEncontrado.setNome(rs.getString("nome_funcionario"));
+	            funcionarioEncontrado.setVendasDouble(rs.getDouble("funcionario_valor_vendas"));
+	            
+	            Main.setFuncionarioLogado(funcionarioEncontrado);
+	            
+	            return true;
+	        }
+	        return false;
 
 	    } catch (SQLException e) {
 	        e.printStackTrace();
-	        return false;
 	    } finally {
 	        try {
 	            if (rs != null) {
@@ -133,13 +143,16 @@ public class FuncionarioDAO implements IFuncionario{
 	            e.printStackTrace();
 	        }
 	    }
+
+	    return false; // Retorna null se o login for inválido ou ocorrer uma exceção
 	}
+
 	
 	@Override
 	public ArrayList<Funcionario> listarFuncionario() {
 	    ArrayList<Funcionario> lista = new ArrayList<>();
 	    
-	    String selectSQL = "SELECT cpf_funcionario, nome_funcionario FROM FUNCIONARIO";
+	    String selectSQL = "SELECT cpf_funcionario, nome_funcionario, funcionario_valor_vendas FROM FUNCIONARIO";
 	    PreparedStatement ps = null;
 	    ResultSet rs = null;
 	    
@@ -150,8 +163,9 @@ public class FuncionarioDAO implements IFuncionario{
 	        while (rs.next()) {
 	            long cpf = rs.getLong("cpf_funcionario");
 	            String nome = rs.getString("nome_funcionario");
+	            Double vendas = rs.getDouble("funcionario_valor_vendas");
 	            
-	            Funcionario funcionario = new Funcionario(cpf, nome);
+	            Funcionario funcionario = new Funcionario(cpf, nome, vendas);
 	            lista.add(funcionario);
 	        }
 	    } catch (SQLException e) {

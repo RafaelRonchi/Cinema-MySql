@@ -12,6 +12,12 @@ public class Funcionario {
 		Nome = nome;
 		vendasDouble = 0.00;
 	}
+	
+	public Funcionario(long cpf, String nome, Double vendas) {
+		Cpf = cpf;
+		Nome = nome;
+		vendasDouble = vendas;
+	}
 	public Funcionario() {
 		
 	}

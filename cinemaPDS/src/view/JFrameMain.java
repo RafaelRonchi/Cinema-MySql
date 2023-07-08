@@ -180,7 +180,6 @@ public class JFrameMain extends JFrame {
 
 								if(funcionarioDAO.verificarLogin(nFuncionario)) {
 									
-									Main.setFuncionarioLogado(nFuncionario);
 									SelecionarFilme sf = new SelecionarFilme();
 									dispose(); // fecha tela atual
 									sf.setVisible(true);
