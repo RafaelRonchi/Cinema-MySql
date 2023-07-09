@@ -4,10 +4,11 @@ import Interfaces.ISala;
 
 public class Sala {
 	private String Nome;
+	private String Time;
 	
-	public Sala(String nome) {
-		// TODO Auto-generated constructor stub
-		Nome = nome;
+	public Sala(String nome, String time) {
+		setNome(nome);
+		setTime(time);
 	}
 
 	public String getNome() {
@@ -16,6 +17,14 @@ public class Sala {
 
 	public void setNome(String nome) {
 		this.Nome = nome;
+	}
+
+	public String getTime() {
+		return Time;
+	}
+
+	public void setTime(String time) {
+		Time = time;
 	}
 
 	

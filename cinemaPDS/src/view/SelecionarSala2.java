@@ -11,8 +11,10 @@ import javax.swing.JPopupMenu;
 import javax.swing.border.Border;
 import javax.swing.border.EmptyBorder;
 
+import control.SalaDAO;
 import main.Main;
 import modelo.RoundedPopopMenu;
+import modelo.Sala;
 
 import javax.swing.JLabel;
 import java.awt.Font;
@@ -22,6 +24,7 @@ import javax.swing.JButton;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 import java.awt.Toolkit;
 import net.miginfocom.swing.MigLayout;
@@ -30,7 +33,7 @@ import javax.swing.SwingConstants;
 public class SelecionarSala2 extends JFrame {
 
 	private JPanel contentPane;
-
+	private SalaDAO salaDAO = SalaDAO.getInstancia();
 	/**
 	 * Launch the application.
 	 */
@@ -52,6 +55,8 @@ public class SelecionarSala2 extends JFrame {
 	 * Create the frame.
 	 */
 	public SelecionarSala2() {
+		ArrayList<Sala> salasLista = salaDAO.verSala();
+
 		setIconImage(Toolkit.getDefaultToolkit().getImage(SelecionarSala2.class.getResource("/Images/0609b1d7-4a7d-41be-bd18-081ecb35eb9e.png")));
 		setBackground(Color.WHITE);
 		setResizable(false);
@@ -70,7 +75,7 @@ public class SelecionarSala2 extends JFrame {
 		lblSelecioneUmaSala.setFont(new Font("Yu Gothic UI Light", Font.BOLD, 46));
 		contentPane.add(lblSelecioneUmaSala, "cell 0 1 5 1,alignx center,aligny bottom");
 		
-		JLabel lblSalaB = new JLabel("10:50 - Sala B1");
+		JLabel lblSalaB = new JLabel(salasLista.get(2).getTime() +" "+ salasLista.get(2).getNome());
 		lblSalaB.setHorizontalAlignment(SwingConstants.CENTER);
 		lblSalaB.setForeground(Color.LIGHT_GRAY);
 		lblSalaB.setFont(new Font("Yu Gothic UI Semibold", Font.BOLD, 21));
@@ -89,7 +94,7 @@ public class SelecionarSala2 extends JFrame {
 			}
 		});
 		
-		JLabel lblSalaB_2 = new JLabel("15:20 - Sala B2");
+		JLabel lblSalaB_2 = new JLabel(salasLista.get(3).getTime() +" "+ salasLista.get(3).getNome());
 		lblSalaB_2.setHorizontalAlignment(SwingConstants.CENTER);
 		lblSalaB_2.setForeground(Color.LIGHT_GRAY);
 		lblSalaB_2.setFont(new Font("Yu Gothic UI Semibold", Font.BOLD, 21));

@@ -38,7 +38,8 @@ CREATE TABLE IF NOT EXISTS `cinemapds`.`filme` (
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `cinemapds`.`sala` (
   `idsala` INT NOT NULL AUTO_INCREMENT,
-  `sala_horario` DATETIME NOT NULL,
+  `sala_horario` TIME NOT NULL,
+  `sala_nome` VARCHAR(2) NOT NULL,
   `filme_idfilme` INT NOT NULL,
   PRIMARY KEY (`idsala`),
   INDEX `fk_sala_filme_idx` (`filme_idfilme` ASC) VISIBLE,

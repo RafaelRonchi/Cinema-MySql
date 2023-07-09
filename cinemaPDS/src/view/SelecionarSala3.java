@@ -15,12 +15,15 @@ import javax.swing.JPopupMenu;
 import javax.swing.border.Border;
 import javax.swing.border.EmptyBorder;
 
+import control.SalaDAO;
 import main.Main;
 import modelo.RoundedPopopMenu;
+import modelo.Sala;
 
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 import java.awt.Toolkit;
 import net.miginfocom.swing.MigLayout;
@@ -29,6 +32,7 @@ import javax.swing.SwingConstants;
 public class SelecionarSala3 extends JFrame {
 
 	private JPanel contentPane;
+	private SalaDAO salaDAO = SalaDAO.getInstancia();
 
 	/**
 	 * Launch the application.
@@ -51,6 +55,8 @@ public class SelecionarSala3 extends JFrame {
 	 * Create the frame.
 	 */
 	public SelecionarSala3() {
+		ArrayList<Sala> salasLista = salaDAO.verSala();
+		
 		setIconImage(Toolkit.getDefaultToolkit().getImage(SelecionarSala3.class.getResource("/Images/0609b1d7-4a7d-41be-bd18-081ecb35eb9e.png")));
 		setBackground(Color.WHITE);
 		setResizable(false);
@@ -84,13 +90,13 @@ public class SelecionarSala3 extends JFrame {
 		lblSelecioneUmaSala.setFont(new Font("Yu Gothic UI Light", Font.BOLD, 46));
 		contentPane.add(lblSelecioneUmaSala, "cell 0 1 6 1,alignx center,aligny bottom");
 		
-		JLabel lblSalaB = new JLabel("14:50 - Sala C1");
+		JLabel lblSalaB = new JLabel(salasLista.get(3).getTime() +" "+ salasLista.get(4).getNome());
 		lblSalaB.setHorizontalAlignment(SwingConstants.CENTER);
 		lblSalaB.setForeground(Color.LIGHT_GRAY);
 		lblSalaB.setFont(new Font("Yu Gothic UI Semibold", Font.BOLD, 21));
 		contentPane.add(lblSalaB, "cell 1 3,grow");
 		
-		JLabel lblSalaB_2 = new JLabel("21:45 - Sala C2");
+		JLabel lblSalaB_2 = new JLabel(salasLista.get(4).getTime() +" "+ salasLista.get(4).getNome());
 		lblSalaB_2.setHorizontalAlignment(SwingConstants.CENTER);
 		lblSalaB_2.setForeground(Color.LIGHT_GRAY);
 		lblSalaB_2.setFont(new Font("Yu Gothic UI Semibold", Font.BOLD, 21));

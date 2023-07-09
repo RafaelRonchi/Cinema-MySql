@@ -11,8 +11,10 @@ import javax.swing.JPopupMenu;
 import javax.swing.border.Border;
 import javax.swing.border.EmptyBorder;
 
+import control.SalaDAO;
 import main.Main;
 import modelo.RoundedPopopMenu;
+import modelo.Sala;
 
 import javax.swing.JLabel;
 import java.awt.Font;
@@ -22,6 +24,7 @@ import javax.swing.ImageIcon;
 import java.awt.Toolkit;
 import java.awt.event.ActionListener;
 import java.security.interfaces.DSAKey;
+import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 import javax.swing.UIManager;
 import java.awt.GridLayout;
@@ -33,6 +36,7 @@ import javax.swing.SwingConstants;
 public class SelecionarSala1 extends JFrame {
 
 	private JPanel contentPane;
+	private SalaDAO salaDAO = SalaDAO.getInstancia();
 
 	/**
 	 * Launch the application.
@@ -55,6 +59,8 @@ public class SelecionarSala1 extends JFrame {
 	 * Create the frame.
 	 */
 	public SelecionarSala1() {
+		ArrayList<Sala> salasLista = salaDAO.verSala();
+		
 		setIconImage(Toolkit.getDefaultToolkit().getImage(SelecionarSala1.class.getResource("/Images/0609b1d7-4a7d-41be-bd18-081ecb35eb9e.png")));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
@@ -89,7 +95,7 @@ public class SelecionarSala1 extends JFrame {
 		BtnSalaA1.setBackground(new Color(255, 255, 255));
 		BtnSalaA1.addActionListener(new ActionListener() {
 
-public void actionPerformed(ActionEvent e) {
+			public void actionPerformed(ActionEvent e) {
 				
 				dispose(); // fecha tela atual
 				AssentosA1 a1  = new AssentosA1 ();
@@ -99,14 +105,14 @@ public void actionPerformed(ActionEvent e) {
 			}
 		});
 		
-		JLabel lblNewLabel1 = new JLabel("13:35 - Sala A1");
+		JLabel lblNewLabel1 = new JLabel(salasLista.get(0).getTime() +" "+ salasLista.get(0).getNome());
 		lblNewLabel1.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel1.setForeground(Color.LIGHT_GRAY);
 		lblNewLabel1.setFont(new Font("Yu Gothic UI Semibold", Font.BOLD, 21));
 		contentPane.add(lblNewLabel1, "cell 1 4,growx,aligny center");
 		
 		//2
-		JLabel lblNewLabel = new JLabel("13:35 - Sala A2");
+		JLabel lblNewLabel = new JLabel(salasLista.get(1).getTime() +" "+ salasLista.get(1).getNome());
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel.setForeground(Color.LIGHT_GRAY);
 		lblNewLabel.setFont(new Font("Yu Gothic UI Semibold", Font.BOLD, 21));
