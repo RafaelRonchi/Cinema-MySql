@@ -10,7 +10,9 @@ import javax.swing.JPanel;
 import javax.swing.border.Border;
 import javax.swing.border.EmptyBorder;
 
+import control.FilmeDAO;
 import main.Main;
+import modelo.Filme;
 import modelo.RoundedPopopMenu;
 
 import java.awt.SystemColor;
@@ -25,14 +27,16 @@ import javax.swing.JLabel;
 import java.awt.Font;
 import java.awt.Image;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 import java.awt.Toolkit;
 import net.miginfocom.swing.MigLayout;
+import javax.swing.SwingConstants;
 
 public class SelecionarFilme extends JFrame {
 
 	private JPanel contentPane;
-
+	private FilmeDAO filmeDAO = FilmeDAO.getInstancia();
 	/**
 	 * Launch the application.
 	 */
@@ -54,6 +58,8 @@ public class SelecionarFilme extends JFrame {
 	 * Create the frame.
 	 */
 	public SelecionarFilme() {
+		ArrayList<Filme> filmesLista = filmeDAO.mostraFilme();
+		
 		setIconImage(Toolkit.getDefaultToolkit().getImage(SelecionarFilme.class.getResource("/Images/0609b1d7-4a7d-41be-bd18-081ecb35eb9e.png")));
 		setBackground(Color.WHITE);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -188,6 +194,18 @@ public class SelecionarFilme extends JFrame {
 			        popupMenu.setVisible(false);
 			    }
 			});
+		
+		JLabel Filme1_1 = new JLabel(filmesLista.get(0).getNomeFilme());
+		Filme1_1.setHorizontalAlignment(SwingConstants.LEFT);
+		Filme1_1.setForeground(Color.WHITE);
+		Filme1_1.setFont(new Font("Yu Gothic UI Light", Font.BOLD, 20));
+		contentPane.add(Filme1_1, "cell 1 2,alignx center,aligny center");
+		
+		JLabel Filme1_2 = new JLabel(filmesLista.get(1).getNomeFilme());
+		Filme1_2.setHorizontalAlignment(SwingConstants.LEFT);
+		Filme1_2.setForeground(Color.WHITE);
+		Filme1_2.setFont(new Font("Yu Gothic UI Light", Font.BOLD, 20));
+		contentPane.add(Filme1_2, "cell 7 2,alignx center");
 
 
 		
@@ -220,6 +238,12 @@ public class SelecionarFilme extends JFrame {
 		btnFilme1_1_1.setBackground(Color.WHITE);
 		btnFilme1_1_1.setIcon(new ImageIcon(SelecionarFilme.class.getResource("/Images/filmes_16093_01_resized.png")));
 		contentPane.add(btnFilme1_1_1, "cell 7 4,grow");
+		
+		JLabel Filme1 = new JLabel(filmesLista.get(2).getNomeFilme());
+		Filme1.setHorizontalAlignment(SwingConstants.LEFT);
+		Filme1.setForeground(new Color(255, 255, 255));
+		Filme1.setFont(new Font("Yu Gothic UI Light", Font.BOLD, 20));
+		contentPane.add(Filme1, "flowx,cell 4 2,alignx center");
 		
 		JLabel lblNewLabel = new JLabel("Selecione um Filme");
 		lblNewLabel.setFont(new Font("Yu Gothic UI Light", Font.BOLD, 46));

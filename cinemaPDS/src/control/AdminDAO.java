@@ -15,8 +15,8 @@ import modelo.Funcionario;
 public class AdminDAO implements IAdmin{
 	
 	private Connection conexao;
-	 private static AdminDAO instancia;
-	 private static ArrayList<Admin> admin = new ArrayList<>();
+	private static AdminDAO instancia;
+	private static ArrayList<Admin> admin = new ArrayList<>();
 
 	// Construtor privado para impedir a criação de instâncias diretamente
 	    private AdminDAO() {
